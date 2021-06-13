@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+ReadFileExcel/packages/
+ReadFileExcel/ReadFileExcel/bin/
+ReadFileExcel/ReadFileExcel/obj/
