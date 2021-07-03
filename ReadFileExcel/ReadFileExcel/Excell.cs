@@ -1,11 +1,10 @@
 ﻿using ExcelDataReader;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 
-namespace WindowsFormsControlLibrary1
-{
     public class Excell
     {
         private string _path { get; set; }
@@ -15,7 +14,7 @@ namespace WindowsFormsControlLibrary1
             _path = path;
             _list = new List<object>();
         }
-        public List<object> ReadFile(string sheetName)
+        public List<List<string>> ReadFile(string sheetName)
         {
             using (var stream = System.IO.File.Open(_path,FileMode.Open, FileAccess.Read))
             {
@@ -40,8 +39,8 @@ namespace WindowsFormsControlLibrary1
                     allRowsList.Add(rowDataList);
                 }
                 _list = allRowsList;
-                return allRowsList;
+            var temp = JsonConvert.SerializeObject(allRowsList);
+                return JsonConvert.DeserializeObject<List<List<string>>>(temp); 
             }
         }
     }
-}
